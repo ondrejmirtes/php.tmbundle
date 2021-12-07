@@ -547,17 +547,17 @@
 				<dict>
 					<key>begin</key>
 					<string>(?ix)
-						(?:                                                    # Optional
+						(?:                                                           # Optional
 							(\?)?
 							(?:
-							  (array|bool|float|int|string|mixed|never)        # scalar-type
-							  | (callable|iterable)                            # base-type-declaration
+							  (array|bool|float|int|string|mixed|never|object)        # scalar-type
+							  | (callable|iterable)                                   # base-type-declaration
 							  | ([a-z_0-9\\]*[a-z_][a-z_0-9]*)
 							)
 							\s+
 						)?
-						(?:(&amp;)\s*)?                                        # Reference
-						((\$+)[a-z_\x{7f}-\x{ff}][a-z0-9_\x{7f}-\x{ff}]*)      # Variable name
+						(?:(&amp;)\s*)?                                               # Reference
+						((\$+)[a-z_\x{7f}-\x{ff}][a-z0-9_\x{7f}-\x{ff}]*)             # Variable name
 					</string>
 					<key>beginCaptures</key>
 					<dict>
@@ -1984,11 +1984,11 @@
 							\s*(:)\s*
 							(\?)?
 							(?:
-							  (array|bool|float|int|string|mixed|never)    # scalar-type
-							  | (callable|iterable)                        # base-type-declaration
+							  (array|bool|float|int|string|mixed|never|object)    # scalar-type
+							  | (callable|iterable)                               # base-type-declaration
 							  | (void)
-							  | (self|parent|static)                       # late static binding
-							  | ([a-z_0-9\\]*[a-z_][a-z_0-9]*)             # qualified-name
+							  | (self|parent|static)                              # late static binding
+							  | ([a-z_0-9\\]*[a-z_][a-z_0-9]*)                    # qualified-name
 							)
 						)?
 					</string>
@@ -2203,7 +2203,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(array|real|double|float|int(eger)?|bool(ean)?|string|mixed|never|class|clone|var|function|interface|parent|self|object)\b</string>
+					<string>(?i)\b(array|real|double|float|int(eger)?|bool(ean)?|string|mixed|never|object|class|clone|var|function|interface|parent|self|object)\b</string>
 					<key>name</key>
 					<string>storage.type.php</string>
 				</dict>

@@ -1390,6 +1390,65 @@
 				</dict>
 				<dict>
 					<key>begin</key>
+					<string>(?i)^\s*(enum)\s+([a-z0-9_]+)\s*(implements)?\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.enum.php</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.enum.php</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.extends.php</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>((?:[a-zA-Z0-9_]+\s*,\s*)*)([a-zA-Z0-9_]+)?\s*(?:(?=\{)|$)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>match</key>
+									<string>[a-zA-Z0-9_]+</string>
+									<key>name</key>
+									<string>entity.other.inherited-class.php</string>
+								</dict>
+								<dict>
+									<key>match</key>
+									<string>,</string>
+									<key>name</key>
+									<string>punctuation.separator.classes.php</string>
+								</dict>
+							</array>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.inherited-class.php</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.enum.php</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#namespace</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>(?i)(?:^|(?&lt;=&lt;\?php))\s*(namespace)\b\s+(?=([a-z0-9_\\]+\s*($|[;{]|(\/[\/*])))|$)</string>
 					<key>beginCaptures</key>
 					<dict>

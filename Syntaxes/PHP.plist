@@ -639,6 +639,24 @@
 				</dict>
 			</array>
 		</dict>
+		<key>named-arguments</key>
+		<dict>
+			<key>match</key>
+			<string>(?i)(?&lt;=^|\(|,)\s*([a-z_\x{7f}-\x{7fffffff}][a-z0-9_\x{7f}-\x{7fffffff}]*)\s*(:)(?!:)</string>
+			<key>captures</key>
+			<dict>
+			<key>1</key>
+			<dict>
+				<key>name</key>
+				<string>support.class.php</string>
+			</dict>
+			<key>2</key>
+			<dict>
+				<key>name</key>
+				<string>punctuation.separator.colon.php</string>
+			</dict>
+			</dict>
+		</dict>
 		<key>function-call</key>
 		<dict>
 			<key>patterns</key>
@@ -655,6 +673,10 @@
 						<dict>
 							<key>include</key>
 							<string>#user-function-call</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#named-arguments</string>
 						</dict>
 					</array>
 				</dict>
@@ -694,6 +716,10 @@
 						<dict>
 							<key>include</key>
 							<string>#user-function-call</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#named-arguments</string>
 						</dict>
 					</array>
 				</dict>
@@ -2458,7 +2484,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(-&gt;)(\$?\{)</string>
+					<string>(\??-&gt;)\s*(\$?{)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -2473,10 +2499,10 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(\})</string>
+					<string>}</string>
 					<key>endCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.variable.php</string>
@@ -2484,6 +2510,51 @@
 					</dict>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#language</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?i)(\??-&gt;)\s*([a-z_\x{7f}-\x{7fffffff}][a-z0-9_\x{7f}-\x{7fffffff}]*)\s*(\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.class.php</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>meta.function-call.object.php</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.begin.bracket.round.php</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)|(?=\?&gt;)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.arguments.end.bracket.round.php</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.method-call.php</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#named-arguments</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#language</string>
@@ -2501,26 +2572,16 @@
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>meta.function-call.object.php</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
 							<string>variable.other.property.php</string>
 						</dict>
-						<key>4</key>
+						<key>3</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.variable.php</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?x)(\??-&gt;)
-            				(?:
-            				    ([A-Za-z_][A-Za-z_0-9]*)\s*\(
-            				    |
-            				    ((\$+)?[a-zA-Z_\x{7f}-\x{ff}][a-zA-Z0-9_\x{7f}-\x{ff}]*)
-            				)?</string>
+					<string>(?i)(\??-&gt;)\s*((\$+)?[a-z_\x{7f}-\x{7fffffff}][a-z0-9_\x{7f}-\x{7fffffff}]*)?</string>
 				</dict>
 			</array>
 		</dict>
